@@ -1,0 +1,109 @@
+{% extends 'country/base.html' %}
+
+{% block content %}
+    <nav class="ms-3" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'country_list' %}">Country</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ country.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="container d-flex align-items-center rounded p-3 d-flex">
+            <div class="col-7">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/1024px-Flag_of_Poland.svg.png" class="rounded" style="width: 350px;" alt="">
+            </div>
+            
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="ms-1 ps-2">{{ country.name }}</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingCapital" value="{{ country.capital }}">
+                            <label for="floatingCapital">Capital</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingLargestCity" value="{{ country.largest_city }}">
+                            <label for="floatingLargestCity">Largest city</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingContinent" value="{{ country.continent }}">
+                            <label for="floatingContinent">Continent</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingRegion" value="{{ country.region }}">
+                            <label for="floatingRegion">Region</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingPopulation" value="{{ country.get_population }}">
+                            <label for="floatingPopulation">Population</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingDensity" value="{{ country.density }} / km²">
+                            <label for="floatingDensity">Density</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingArea" value="{{ country.get_area }} km²">
+                            <label for="floatingArea">Area</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingGrossProduct" value="${{ country.gross_product }}">
+                            <label for="floatingGrossProduct">Gross domestic product</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingCurrency" value="{{ country.currency }}">
+                            <label for="floatingCurrency">Currency</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingCallingCode" value="+{{ country.calling_code }}">
+                            <label for="floatingCallingCode">Calling code</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

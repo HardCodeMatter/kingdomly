@@ -16,3 +16,9 @@ class Country(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.pk})'
+
+    def get_population(self):
+        return f'{self.population:,}'
+
+    def get_area(self):
+        return f'{self.area:,}'
