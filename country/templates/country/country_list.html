@@ -1,11 +1,11 @@
 {% extends 'country/base.html' %}
 
 {% block content %}
-    <div class="d-flex justify-content-evenly bg-primary">
+    <div class="d-flex justify-content-evenly">
         <div class="container-xxl gap-3 row row-cols-3">
             {% for country in countries %}
                 <div class="card" style="width: 23.7%;">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/1024px-Flag_of_Poland.svg.png" alt="">
+                    <img src="{% if country.flag %}{{ country.flag.url }}{% endif %}" class="rounded" alt="">
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ country.name }}</h5>
 

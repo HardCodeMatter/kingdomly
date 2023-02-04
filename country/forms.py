@@ -7,6 +7,8 @@ class CountryCreateForm(forms.ModelForm):
         model = Country
         fields = (
             'name', 'capital', 'continent', 'region', 'largest_city',
-            'area', 'population', 'density', 
-            'gross_product', 'currency', 'calling_code',
+            'flag',
+            'area', 'population', 'density', 'demonym', 
+            'gross_product', 'per_capita', 'currency',
+            'calling_code', 'domain',
         )

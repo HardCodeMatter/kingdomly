@@ -9,15 +9,18 @@ class CountryAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Country information', {'fields': (
-            'name', 'capital', 'largest_city', 'continent', 'region',
+            'name', 'capital', 'largest_city', 'continent', 'region', 'flag',
         )}),
         ('Territory information', {'fields': (
-            'area', 'population', 'density',
+            'area', 'population', 'density', 'demonym',
         )}),
-        ('Value information', {'fields': (
-            'gross_product', 'currency', 'calling_code',
+        ('Economy information', {'fields': (
+            'gross_product', 'per_capita', 'currency',
+        )}),
+        ('Technical information', {'fields': (
+            'calling_code', 'domain',
         )}),
     )
 
     search_fields = ('name', 'capital', 'continent', 'region', 'currency', 'calling_code',)
-    ordering = ('name',)
+    ordering = ('-id',)

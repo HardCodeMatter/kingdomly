@@ -12,7 +12,7 @@
     <div class="position-absolute top-50 start-50 translate-middle">
         <div class="container d-flex align-items-center rounded p-3 d-flex">
             <div class="col-7">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/1024px-Flag_of_Poland.svg.png" class="rounded" style="width: 350px;" alt="">
+                <img src="{% if country.flag %}{{ country.flag.url }}{% endif %}" class="rounded" style="width: 350px;" alt="">
             </div>
             
             <div class="col">
@@ -82,8 +82,24 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingDemonym" value="{{ country.demonym }}">
+                            <label for="floatingDemonym">Demonym</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating">
                             <input type="text" readonly class="form-control-plaintext" id="floatingGrossProduct" value="${{ country.gross_product }}">
                             <label for="floatingGrossProduct">Gross domestic product</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingGrossPerCapita" value="${{ country.per_capita }}">
+                            <label for="floatingGrossPerCapita">Per capita</label>
                         </div>
                     </div>
                     
@@ -100,6 +116,13 @@
                         <div class="form-floating">
                             <input type="text" readonly class="form-control-plaintext" id="floatingCallingCode" value="+{{ country.calling_code }}">
                             <label for="floatingCallingCode">Calling code</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" readonly class="form-control-plaintext" id="floatingTopLevelDomain" value="{{ country.domain }}">
+                            <label for="floatingTopLevelDomain">Top-level domain</label>
                         </div>
                     </div>
                 </div>

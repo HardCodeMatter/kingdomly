@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="bg-white rounded m-3 p-3">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="d-grid gap-2">
@@ -30,6 +30,9 @@
                     <div class="col">
                         {{ form.largest_city|as_crispy_field }}
                     </div>
+                    <div class="col">
+                        {{ form.demonym|as_crispy_field }}
+                    </div>
                 </div>
 
                 <div class="row">
@@ -49,10 +52,25 @@
                         {{ form.gross_product|as_crispy_field }}
                     </div>
                     <div class="col">
-                        {{ form.currency|as_crispy_field }}
+                        {{ form.per_capita|as_crispy_field }}
                     </div>
                     <div class="col">
+                        {{ form.currency|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
                         {{ form.calling_code|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.domain|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ form.flag|as_crispy_field }}
                     </div>
                 </div>
             </div>

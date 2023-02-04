@@ -26,7 +26,7 @@ def country_detail(request, id):
 
 def country_create(request):
     if request.method == 'POST':
-        form = CountryCreateForm(request.POST)
+        form = CountryCreateForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
