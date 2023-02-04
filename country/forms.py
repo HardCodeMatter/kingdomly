@@ -2,7 +2,7 @@ from django import forms
 from .models import Country
 
 
-class CountryCreateForm(forms.ModelForm):
+class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
         fields = (

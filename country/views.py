@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Country
-from .forms import CountryCreateForm
+from .forms import CountryForm
 
 
 def index(request):
@@ -24,16 +24,36 @@ def country_detail(request, id):
 
     return render(request, 'country/country_detail.html', context)
 
+def country_edit(request, id):
+    country = Country.objects.get(id=id)
+
+    if request.method == 'POST':
+        form = CountryForm(request.POST, instance=country)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect(f'/country/{country.id}')
+    else:
+        form = CountryForm(instance=country)
+
+    context = {
+        'form': form,
+        'country': country,
+    }
+    
+    return render(request, 'country/country_edit.html', context)
+
 def country_create(request):
     if request.method == 'POST':
-        form = CountryCreateForm(request.POST, request.FILES)
+        form = CountryForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
 
             return redirect('/country/')
     else:
-        form = CountryCreateForm()
+        form = CountryForm()
 
     context = {
         'form': form,
