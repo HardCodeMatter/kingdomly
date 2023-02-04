@@ -3,6 +3,14 @@
 {% block content %}
     <div class="d-flex justify-content-evenly">
         <div class="container-xxl gap-3 row row-cols-3">
+            <div class="card text-center" style="width: 23.7%;">
+                <div class="w-100 card-body position-absolute top-50 start-50 translate-middle">
+                    <h5 class="card-title">Country record</h5>
+                    <p class="card-text">That adding new record you need touch to link below.</p>
+                    <a href="{% url 'country_create' %}" class="btn btn-primary">Add country</a>
+                </div>
+            </div>
+              
             {% for country in countries %}
                 <div class="card" style="width: 23.7%;">
                     <img src="{% if country.flag %}{{ country.flag.url }}{% endif %}" class="rounded" alt="">
