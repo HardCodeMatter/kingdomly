@@ -28,7 +28,7 @@ def country_edit(request, id):
     country = Country.objects.get(id=id)
 
     if request.method == 'POST':
-        form = CountryForm(request.POST, instance=country)
+        form = CountryForm(request.POST, request.FILES, instance=country)
 
         if form.is_valid():
             form.save()
