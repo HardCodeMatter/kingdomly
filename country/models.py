@@ -1,10 +1,18 @@
 from django.db import models
 
 
+class Continent(models.Model):
+    name = models.CharField(('Name'), max_length=100)
+    area = models.IntegerField(('Area'), blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
 class Country(models.Model):
     name = models.CharField(('Name'), max_length=100)
     capital = models.CharField(('Capital'), max_length=100)
-    continent = models.CharField(('Continent'), max_length=100, blank=True, null=True)
+    continent = models.ForeignKey(Continent, on_delete=models.CASCADE, blank=True, null=True)
     region = models.CharField(('Region'), max_length=100, blank=True, null=True)
     largest_city = models.CharField(('Largest city'), max_length=100, blank=True, null=True)
 
