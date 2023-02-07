@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Country
 from .forms import CountryForm
 
@@ -24,6 +25,7 @@ def country_detail(request, id):
 
     return render(request, 'country/country_detail.html', context)
 
+@login_required
 def country_edit(request, id):
     country = Country.objects.get(id=id)
 
@@ -44,6 +46,7 @@ def country_edit(request, id):
     
     return render(request, 'country/country_edit.html', context)
 
+@login_required
 def country_create(request):
     if request.method == 'POST':
         form = CountryForm(request.POST, request.FILES)

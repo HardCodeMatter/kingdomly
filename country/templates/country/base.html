@@ -9,7 +9,7 @@
     <title>Kingdomly</title>
 </head>
 <body style="background: #dfdfdf;">
-    <div class="bg-white rounded m-3 p-2">
+    <div class="d-flex justify-content-between bg-white rounded m-3 p-2">
         <div class="nav nav-pills">
             <div class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
@@ -23,6 +23,50 @@
             <div class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
             </div>
+        </div>
+
+        <div>
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="btn btn-transparent dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if user.is_verified %}
+                            <i class="bi bi-patch-check-fill text-primary"></i>
+                        {% endif %}
+                        {{ user.first_name }} {{ user.last_name }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a class="dropdown-item disabled" href="#">Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <div class="modal fade text-dark" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="logoutModalLabel">Log out</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to log out?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <a class="btn btn-outline-danger" href="{% url 'logout' %}">Log out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <a class="btn btn-outline-primary" href="{% url 'login' %}">Log in</a>
+                <a class="btn btn-primary" href="/register/">Sign up</a>
+            {% endif %}
         </div>
     </div>
 
