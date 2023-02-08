@@ -1,0 +1,24 @@
+{% extends 'country/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-3">
+            {% for continent in continents %}
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">{{ continent.name }}</h5>
+                            
+                            <div class="card-text">
+                                Europe is located entirely in the Northern Hemisphere
+                                and mostly in the Eastern Hemisphere.
+                            </div>
+
+                            <a href="{% url 'continent_detail' continent.id %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

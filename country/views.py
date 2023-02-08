@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Country
+from .models import Continent, Country
 from .forms import CountryForm
 
 
@@ -63,3 +63,26 @@ def country_create(request):
     }
 
     return render(request, 'country/country_create.html', context)
+
+
+@login_required
+def continent_list(request):
+    continents = Continent.objects.all()
+
+    context = {
+        'continents': continents
+    }
+
+    return render(request, 'country/continent_list.html', context)
+
+@login_required
+def continent_detail(request, id):
+    continent = Continent.objects.get(id=id)
+    countries = Country.objects.filter(continent=continent)
+    
+    context = {
+        'continent': continent,
+        'countries': countries,
+    }
+
+    return render(request, 'country/continent_detail.html', context)
