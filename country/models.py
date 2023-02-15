@@ -4,6 +4,7 @@ from django.db import models
 class Continent(models.Model):
     name = models.CharField(('Name'), max_length=100)
     area = models.IntegerField(('Area'), blank=True, null=True)
+    image = models.ImageField(('Image'), upload_to='continents', blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'

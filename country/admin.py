@@ -9,7 +9,7 @@ class ContinentAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {'fields': (
-            'name', 'area',
+            'name', 'area', 'image',
         )}),
     )
 
