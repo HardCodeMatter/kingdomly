@@ -1,7 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, Permission
 from .manager import UserManager
 from django.utils import timezone
+
+
+class Role(models.Model):
+    name = models.CharField(('name'), max_length=100)
+    level = models.IntegerField(('level'))
+    permissions = models.ManyToManyField(Permission, related_name='permissions')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = 'Role'
+        verbose_name_plural = 'Roles'
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -15,6 +28,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(('staff'), default=False)
     is_active = models.BooleanField(('active'), default=True)
     is_verified = models.BooleanField(('verified'), default=False)
+
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, default=1)
 
     objects = UserManager()
 

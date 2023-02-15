@@ -65,7 +65,6 @@ def country_create(request):
     return render(request, 'country/country_create.html', context)
 
 
-@login_required
 def continent_list(request):
     continents = Continent.objects.all()
 
@@ -75,7 +74,6 @@ def continent_list(request):
 
     return render(request, 'country/continent_list.html', context)
 
-@login_required
 def continent_detail(request, id):
     continent = Continent.objects.get(id=id)
     countries = Country.objects.filter(continent=continent)

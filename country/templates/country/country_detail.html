@@ -6,7 +6,9 @@
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
             <li class="breadcrumb-item"><a href="{% url 'country_list' %}">Country</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ country.name }}</li>
-            <li class="breadcrumb-item"><a href="{% url 'country_edit' country.id %}">Edit</a></li>
+            {% if user.role.level > 0 %}
+                <li class="breadcrumb-item"><a href="{% url 'country_edit' country.id %}">Edit</a></li>
+            {% endif %}
         </ol>
     </nav>
 
