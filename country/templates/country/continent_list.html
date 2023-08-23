@@ -1,0 +1,27 @@
+{% extends 'country/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-3">
+            {% for continent in continents %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{% if continent.image %}{{ continent.image.url }}{% endif %}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate text-center">{{ continent.name }}</h5>
+                            
+                            <div class="card-text">
+                                <div class="form-floating">
+                                    <input type="text" readonly class="form-control-plaintext" id="floatingCountries" value="{{ continent.country_set.count }}">
+                                    <label for="floatingCountries">Countries</label>
+                                </div>
+                            </div>
+
+                            <a href="{% url 'continent_detail' continent.id %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

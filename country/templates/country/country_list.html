@@ -1,0 +1,42 @@
+{% extends 'country/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-3">
+            {% for country in countries %}
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="{{ country.flag.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-truncate">{{ country.name }}</h5>
+                            
+                            <div class="row row-cols-sm-1 row-cols-lg-2">
+                                <div class="form-floating">
+                                    <input type="text" readonly class="form-control-plaintext" id="floatingCapital" value="{{ country.capital }}">
+                                    <label class="ms-2" for="floatingCapital">Capital</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" readonly class="form-control-plaintext" id="floatingContinent" value="{{ country.continent.name }}">
+                                    <label class="ms-2" for="floatingContinent">Continent</label>
+                                </div>
+                                
+                                <div class="form-floating">
+                                    <input type="text" readonly class="form-control-plaintext" id="floatingPopulation" value="{{ country.get_population }}">
+                                    <label class="ms-2" for="floatingPopulation">Population</label>
+                                </div>
+
+                                <div class="form-floating">
+                                    <input type="text" readonly class="form-control-plaintext" id="floatingArea" value="{{ country.get_area }} km²">
+                                    <label class="ms-2"  for="floatingArea">Area</label>
+                                </div>
+                            </div>
+
+                            <a href="{% url 'country_detail' country.id %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

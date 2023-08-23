@@ -1,0 +1,26 @@
+{% extends 'country/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="bg-white rounded d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center">
+                <a class="btn btn-link float-start" href="{% url 'continent_list' %}"><i class="bi bi-arrow-left"></i></a>
+                <div class="h5 mt-2">{{ continent.name }}</div>
+            </div>
+
+            <div class="me-2">Countries: {{ continent.country_set.count }}</div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-3">
+            {% for country in countries %}
+                <div class="col">
+                    <div class="card p-2">
+                        <h5 class="card-title">{{ country.name }}</h5>
+                    
+                        <a href="{% url 'country_detail' country.id %}" class="stretched-link"></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

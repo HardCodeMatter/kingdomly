@@ -1,0 +1,82 @@
+{% extends 'country/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="bg-white rounded m-3 p-3">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="d-grid gap-2">
+                <div class="row">
+                    <div class="col">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.capital|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        {{ form.continent|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.region|as_crispy_field }}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        {{ form.largest_city|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.demonym|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ form.area|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.population|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.density|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ form.gross_product|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.per_capita|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.currency|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ form.calling_code|as_crispy_field }}
+                    </div>
+                    <div class="col">
+                        {{ form.domain|as_crispy_field }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        {{ form.flag|as_crispy_field }}
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary mt-3" type="submit">Create</button>
+            <a class="btn btn-outline-danger mt-3" href="{% url 'country_list' %}">Cancel</a>
+        </form>
+    </div>
+{% endblock %}
